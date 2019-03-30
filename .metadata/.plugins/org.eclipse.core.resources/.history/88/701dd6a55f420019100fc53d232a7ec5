@@ -1,0 +1,72 @@
+package com.yychatClient.view;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.EventObject;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+public class FriendList extends JFrame implements ActionListener{
+ CardLayout cardLayout;
+ JPanel  myFriendJPanel;
+ JButton myFriendJButton;
+ JPanel myStragerblackListJPanel;
+ JButton  myStragerJButton;
+ JButton  blackListJButton;
+ 
+ JPanel  myStragerJPanel;
+ JPanel   myFriendStragerJPanel;
+ JButton  myFriendJButton1;
+ JButton  myStragerJButton1;
+ JButton  blackListJButton1;
+ public  FriendList(){
+   myFriendJPanel=new JPanel(new BorderLayout());
+   
+   myFriendJButton=new JButton("我的好友");
+   myFriendJPanel.add(myFriendJButton,"North");
+   
+   myStragerblackListJPanel=new JPanel(new GridLayout(2,1));
+   myStragerJButton=new JButton("我的陌生人");
+   myStragerJButton.addActionListener(this);
+   blackListJButton=new  JButton("黑名单");
+   myFriendStragerJPanel.add(myStragerJButton);
+   myFriendStragerJPanel.add(blackListJButton);
+   myFriendJPanel.add(myStragerblackListJPanel,"South");
+   
+   
+   myStragerJPanel=new JPanel(new BorderLayout());
+   
+   myFriendStragerJPanel=new JPanel(new GridLayout(2,1));
+   myFriendJButton1=new JButton("我的好友");
+   myFriendJButton1.addActionListener(this);
+   myStragerJButton1=new JButton("我的陌生人");
+   myFriendStragerJPanel.add(myFriendJButton1);
+   myFriendStragerJPanel.add(myStragerJButton1);
+   myStragerJPanel.add(myFriendStragerJPanel,"North");
+   blackListJButton1=new JButton("黑名单");
+   myStragerJPanel.add(blackListJButton1,"South");
+   
+   cardLayout=new CardLayout();
+   this.setLayout(cardLayout);
+   this.add(myFriendJPanel,"1");
+   this.add(myStragerJPanel,"2");
+   this.setSize(150,500);
+   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   this.setVisible(true);
+ }
+ public static void main(String[] args) {
+	 FriendList friendList=new FriendList();
+ }
+ @Override
+ public void actionPerformed(ActionEvent arg0) {
+	 if(arg0.getSource()==myFriendJButton1){
+		 cardLayout.show(this.getContentPane(),"1");
+	}
+	if(arg0.getSource()==myStragerJButton){
+		 cardLayout.show(this.getContentPane(),"2");
+	 }
+ }
+}
